@@ -15,7 +15,7 @@ console.log('Mongoose connection error: ' + err);
 *****p*/
 
 
-var uristring = ;process.env.MONGODB_URI;
+var uristring = process.env.MONGODB_URI;
  //||'mongodb://localhost/inventory';
 
 var theport = process.env.PORT || 5000;
