@@ -15,9 +15,8 @@ console.log('Mongoose connection error: ' + err);
 *****p*/
 
 
-var uristring = 'mongodb://heroku_ml7xp141:46l6st6uao2q4f38oc9atd8cb4@ds163806.mlab.com:63806/heroku_ml7xp141';
-  //process.env.MONGODB_URI || 
-  //'mongodb://localhost/inventory';
+var uristring = ;process.env.MONGODB_URI;
+ //||'mongodb://localhost/inventory';
 
 var theport = process.env.PORT || 5000;
 
