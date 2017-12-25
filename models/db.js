@@ -15,8 +15,7 @@ console.log('Mongoose connection error: ' + err);
 *****p*/
 
 
-var uristring = process.env.MONGODB_URI;
- //||'mongodb://localhost/inventory';
+var uristring = process.env.MONGODB_URI ||'mongodb://localhost/inventory';
 
 var theport = process.env.PORT || 5000;
 
@@ -60,8 +59,5 @@ var inventory  = mongoose.model('Inventory', InventorySchema);
 module.exports = inventory; 
 
 
-//config variable for heroku: saleskb
-//mongodb://heroku_xj9150l1:pkbk26uiqi2a3m9tbga0a8ngto@ds141082.mlab.com:41082/heroku_xj9150l1
-
-
-//mongodb://lee:lee@ds135552.mlab.com:35552/kb
+//config variable for heroku
+//mongodb://heroku_ml7xp141:46l6st6uao2q4f38oc9atd8cb4@ds163806.mlab.com:63806/heroku_ml7xp141
