@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<header>
+<link rel= "stylesheet" href="/stylesheets/bootstrap.css"/>
+<link rel= "stylesheet" href="/stylesheets/style.css"/>
+<script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+
+</header>
+<body>
+
+
+<div class="container">
+
+
+
+<div class="form-style-2">
+<div class="form-style-2-heading">Update Inventory Data</div>
+
+<form id= "form" action="http://localhost:3000/show" method="put">
+
+<label for="field1"><span>Product Name <span class="required">*</span> </span><input type="text" class="input-field" name="product_edit"  /></label>
+
+<label for="field2"><span>Price of Product <span class="required">*</span> </span><input type="text" class="input-field" name="price_edit" /></label>
+
+<label for="field2"><span>Quantity <span class="required">*</span> </span><input type="text" class="input-field" name="quantity_edit"  /></label>
+
+<label for="field5"><span>Description <span class="required">*</span></span> <textarea rows="4" cols="50" name="description_edit" class="textarea-field"></textarea></label>
+
+<label for="field2"><span>Today's Date <span class="required">*</span> </span><input type="text" class="input-field" name="date_edit"  /></label>
+
+<label><input type = "submit" value="Edit" class ="update"/></label>
+<label><input type = "button" id ="cancel"  value="Cancel" class ="cancel"/></label>
+</form>
+</div>
+
+</div>
+
+<script type="text/javascript">
+
+	editFunction();
+
+    function editFunction(){
+
+      $(".update").click(function(e){
+        
+        var a = location.href; //'http://localhost:3000/add/:id';
+        var value = a.split('/')[4];
+        //console.log(value); 
+
+        $.ajax({
+          url: 'http://localhost:3000/add/' +  value,
+          method: 'put',
+          dataType : 'json', // data type
+          data : $("#form").serialize()
+          
+
+        }); //ajax call 
+      });//update JQuery    
+        
+    } // update function ends here
+
+//Form validation with Jquery 
+$(document).ready(function () {
+
+    $('#form').validate({ // initialize the plugin
+        rules: {
+            product: {
+                required: true,
+                //email: true
+            },
+            price: {
+                required: true,
+                //minlength: 5
+            },
+             quantity: {
+                required: true,
+                //minlength: 5
+            },
+             description: {
+                required: true,
+                //minlength: 5
+            },
+            date: {
+              required: true,
+            },
+        },
+          messages: {
+
+            product: "is required", 
+            price: "is required",
+            quantity: "is required",
+            description: "is required",
+            date: "is required"
+
+           }
+
+    });
+
+});
+
+
+// Pre populating the form 
+var b = location.href; //'http://localhost:3000/add/:id';
+var val = b.split('/')[4];
+//console.log('im the value: ' + val); 
+
+$.ajax({ 
+
+  url: 'http://localhost:3000/show/' +  val,
+  method: 'GET',
+  dataType: 'json'
+
+}).then(function(res){
+  var productName = res.product;
+  var price = res.price;
+  var quantity = res.content;
+  var description = res.description;
+  var date = res.date;
+
+  document.getElementById("productName_edi").value = productName; 
+  document.getElementById("price_edit").value = price; 
+  document.getElementById("quantity_edit").value = quantity; 
+  document.getElementById("description_edit").value = description; 
+  document.getElementById("date_edit").value = date; 
+
+}); //ajaxcallends
+
+
+
+  //cancel go to show page 
+ document.getElementById("cancel").onclick = function () {
+        window.location.href = 'http://localhost:3000/show';
+    };
+	
+
+
+</script>
+</body>
+</html>
