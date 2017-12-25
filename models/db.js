@@ -1,8 +1,6 @@
 var mongoose = require( 'mongoose' );
 
-/*****
-
-var dbURI = 'mongodb://localhost/inventory';
+var dbURI = process.env.MONGODB_URI ||'mongodb://localhost/inventory';
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', function () {
@@ -12,8 +10,8 @@ mongoose.connection.on('error',function (err) {
 console.log('Mongoose connection error: ' + err);
 });
 
-*****p*/
 
+/*****
 
 var uristring = process.env.MONGODB_URI ||'mongodb://localhost/inventory';
 
@@ -28,6 +26,8 @@ mongoose.connect(uristring, function (err, res) {
     console.log ('Succeeded connected to: ' + uristring);
   }
 }); 
+
+******/
 
 //create schema for mongoose
 var InventorySchema = mongoose.Schema({
